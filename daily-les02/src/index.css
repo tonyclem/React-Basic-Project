@@ -1,0 +1,64 @@
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgba(1, 30, 32, 0.966);
+}
+
+h4 {
+  font-size: 11px;
+  margin-bottom: 2px;
+}
+
+p {
+  font-size: 7px;
+}
+.social {
+  padding: 5px;
+}
+
+.social span {
+  align-items: center;
+  font-size: 11px;
+}
+
+.icon {
+  font-size: 23px;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background-color: aqua;
+  width: 550px;
+  height: 600px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  margin-top: 30px;
+  border-radius: 5px;
+}
+
+.work-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.75rem;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.work-container img {
+  width: 80px;
+  height: 75px;
+  border-radius: 50%;
+}
