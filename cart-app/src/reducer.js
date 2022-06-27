@@ -15,6 +15,16 @@ const reducer = (state, action) => {
         return cartItem;
       });
       return { ...state, cart: tempCart };
+    case "DECREASE":
+      let tempCartDecr = state.cart
+        .map((cartItem) => {
+          if (cartItem.id === action.payload) {
+            return { ...cartItem, amount: cartItem.amount - 1 };
+          }
+          return cartItem;
+        })
+        .filter((cartItem) => cartItem.amount !== 0);
+      return { ...state, cart: tempCartDecr };
     default:
       return state;
   }
