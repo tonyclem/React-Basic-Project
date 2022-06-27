@@ -9,13 +9,23 @@ const Submenu = () => {
   } = useGlobalContext();
 
   const container = useRef(null);
+  const [columns, setColums] = useState("col-2");
 
   useEffect(() => {
+    setColums("col-2");
     const submenu = container.current;
     const { center, bottom } = location;
     submenu.style.left = `${center}px`;
     submenu.style.top = `${bottom}px`;
-  }, [location]);
+
+    if (links.length === 3) {
+      setColums("col-3");
+    }
+
+    if (links.length > 3) {
+      setColums("col-4");
+    }
+  }, [location, links]);
 
   return (
     <aside
@@ -23,9 +33,9 @@ const Submenu = () => {
       ref={container}
     >
       <h4>{page}</h4>
-      <div className={`submenu-center `}>
+      <div className={`submenu-center ${columns}`}>
         {links.map((link, index) => {
-          const { label, icon, url } = links;
+          const { label, icon, url } = link;
           return (
             <a key={index} href={url}>
               {icon} {label}
