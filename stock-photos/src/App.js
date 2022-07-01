@@ -9,17 +9,20 @@ const searchUrl = `https://api.unsplash.com/search/photos/`;
 function App() {
   const [loading, setLoading] = useState(false);
   const [photos, setPhotos] = useState([]);
+  const [page, setPage] = useState(1)
 
   const fetchImages = async () => {
     setLoading(true);
     let url;
-  
-
-    url = `${mainUrl}${clientID}`;
+    const urlPage = `&page=${page}`
+    url = `${mainUrl}${clientID}${urlPage}`;
     try {
       const response = await fetch(url);
       const data = await response.json();
-      console.log(data);
+      setPhotos((oldPhotos) => {
+        return [...oldPhotos, ...data];
+      });
+      setLoading(false)
     } catch (error) {
       setLoading(false);
       console.error(error);
@@ -28,8 +31,41 @@ function App() {
 
   useEffect(() => {
     fetchImages();
-  }, []);
-  return <h2>stock photos starter </h2>;
+  }, [page]);
+
+  useEffect(() => {
+    const event = window.addEventListener('scroll', () =>{
+     if(!loading && window.innerHeight + window.scrollY >= document.body.scrollHeight - 10){
+      setPage((oldPage) => {
+        return oldPage + 1
+      });
+     }
+    });
+    return () => window.removeEventListener('scroll', event);
+  },[])
+
+  const handleSubmit = (e) => {
+    console.log(`Submit: 'hello world`);
+  }
+
+  return <main>
+      <section className="search">
+        <form   className="search-form">
+          <input type="text" placeholder="Search..." className="form-input" />
+          <button className="submit-btn" onClick={handleSubmit}>
+            <FaSearch />
+          </button>
+        </form>
+      </section>
+      <section className="photos">
+        <div className="photos-center">
+          {photos.map((image, index) => {
+            return <Photo key={index} {...image} />;
+          })}
+        </div>
+        {loading && <div className="loading">Loading...</div>}
+      </section>
+     </main>;
 }
 
 export default App;
