@@ -6,7 +6,7 @@ const url =
 
 const Movies = () => {
   const { movies, isLoading } = useGlobalContext();
-  if (!isLoading) {
+  if (isLoading) {
     return <div className="loading"></div>;
   }
   return (

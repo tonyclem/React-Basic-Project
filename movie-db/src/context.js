@@ -7,7 +7,7 @@ const AppProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState({ show: false, msg: "" });
   const [movies, setMovies] = useState([]);
-  const [query, setQuery] = useState("batman");
+  const [query, setQuery] = useState("blacklist");
 
   const fetchMovies = async (url) => {
     setIsLoading(true);
@@ -20,7 +20,9 @@ const AppProvider = ({ children }) => {
       } else {
         setError({ show: true, msg: data.Error });
       }
+      setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
       console.log(error);
     }
   };
@@ -35,7 +37,7 @@ const AppProvider = ({ children }) => {
     </AppContext.Provider>
   );
 };
-// make sure use
+
 export const useGlobalContext = () => {
   return useContext(AppContext);
 };
