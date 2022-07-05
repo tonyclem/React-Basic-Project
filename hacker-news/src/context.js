@@ -33,7 +33,6 @@ const AppProvider = ({ children }) => {
         type: SET_STORIES,
         payload: { hits: data.hits, nbPages: data.nbPages },
       });
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
