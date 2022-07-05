@@ -5,7 +5,8 @@ import SetupForm from "./SetupForm";
 import Loading from "./Loading";
 import Modal from "./Modal";
 function App() {
-  const { waiting, loading, questions, index, correct } = useGlobalContext();
+  const { waiting, loading, questions, index, correct, nextQuestion } =
+    useGlobalContext();
   if (waiting) {
     return <SetupForm />;
   }
@@ -16,7 +17,7 @@ function App() {
   const answers = [...incorrect_answers, correct_answer];
   return (
     <main>
-      <Modal />
+      {/* <Modal /> */}
       <section className="quiz">
         <p className="correct-answers">
           corrent answers : {correct}/{index}
@@ -35,7 +36,9 @@ function App() {
             })}
           </div>
         </article>
-        <button className="next-question">next question</button>
+        <button className="next-question" onClick={nextQuestion}>
+          next question
+        </button>
       </section>
     </main>
   );
