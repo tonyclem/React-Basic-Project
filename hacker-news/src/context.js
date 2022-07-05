@@ -40,7 +40,8 @@ const AppProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchStories(`${API_ENDPOINT}query=${state.query}$page=${state.page}`);
+    fetchStories(`${API_ENDPOINT}query=${state.query}&page=${state.page}`);
+    // eslint-disable-next-line
   }, []);
 
   return (
