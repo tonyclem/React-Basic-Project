@@ -1,0 +1,15 @@
+/* Category Styles */
+
+.category-container {
+  position: relative;
+}
+
+.show-category {
+  position: absolute;
+  width: 150px;
+  padding: 5px;
+}
+
+.show-category ul {
+  list-style-type: none;
+}
